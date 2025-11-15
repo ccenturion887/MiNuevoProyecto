@@ -1,38 +1,80 @@
-from Cliente import Cliente
+import sys 
+from Cliente import Cliente 
+from Restaurante import Restaurante
+from Producto import Producto
+from SistemaPedidos import SistemaPedidos
 
-def seleccionar_metodo_pago():
-    print("\n--- Métodos de Pago Disponibles ---")
-    opciones = {
-        '1': 'Tarjeta de Crédito',
-        '2': 'Tarjeta de Débito',
-        '3': 'Efectivo',
-        '4': 'Mercado Pago'
-    }
+def mostrar_menu():
+    print("\n===============================")
+    print("      SISTEMA DE PEDIDOS YA")
+    print("===============================")
+    print("1. Dar de Alta Restaurante (y Productos)")
+    print("2. Registrarse")
+    print("3. Iniciar Sesión")
+    print("4. Salir")
+    print("===============================")
     
-    for clave, valor in opciones.items():
-        print(f"[{clave}] {valor}")
-        
+def ejecutar_app():
+    app = SistemaPedidos()
+    opciones_menu(app)
+
+def añadir_catalogo():
+    """Crea objetos Producto interactuando con el usuario y retorna la lista."""
+    catalogo_productos = [] # La lista se inicia aca
+    
+    
+    print("\n--- Carga de Productos al Catálogo ---")
+    
     while True:
-        eleccion = input("Seleccione el número de su método de pago preferido: ")
-        if eleccion in opciones:
-            return opciones[eleccion]
+        prod_nombre = input("Nombre del producto (o 'fin' para terminar): ")
+        if prod_nombre.lower() == 'fin': 
+            break
+            
+        try:
+            prod_precio = float(input(f"Precio de '{prod_nombre}': $"))
+            prod_categoria = input(f"Categoría (ej: Hamburguesa, Bebida): ")
+            
+            # Crear Objeto Producto
+            nuevo_producto = Producto(prod_nombre, prod_precio, prod_categoria)
+            
+            # Añadir a la lista
+            catalogo_productos.append(nuevo_producto)
+            print(f"   -> Producto '{prod_nombre}' añadido a la lista.")
+            
+        except ValueError:
+            print("Error: El precio debe ser un número.")
+            
+    return opciones_menu # Retorna la lista completa de objetos Producto
+    
+    
+    
+
+def alta_restaurante():
+    nombre_comercial = input("Ingrese el nombre del restaurante: ")
+    direccion_fisica = input("Introduce la direccion del local: ")
+    catalogo = añadir_catalogo()
+
+    restaurante_nuevo = Restaurante (
+        nombre_comercial,
+        direccion_fisica,
+        catalogo
+    )
+    print("\nRestaurante registrado con éxito:")
+    print(f"Nombre del restaurante: {restaurante_nuevo.get_nombre_comercial()}")
+    print(f"Dirección del local: {restaurante_nuevo.get_direccion_fisica()}")
+    
+
+def opciones_menu():
+    while True:
+        mostrar_menu()
+        opcion = input("Seleccione una opcion: ")
+
+        if opcion == "1":
+            alta_restaurante()
+    
         else:
-            print("Opción no válida. Intente de nuevo.")
+            print("Opcion invalida")
 
 
-print("--- Registro de Nuevo Cliente ---")
-
-nombre_cliente = input("Ingrese el nombre del cliente: ")
-direccion_cliente = input("Ingrese la dirección de entrega: ")
-metodo_pago_seleccionado = seleccionar_metodo_pago()
-
-cliente_nuevo = Cliente(
-    nombre_cliente,
-    direccion_cliente,
-    metodo_pago_seleccionado
-)
-
-print("\nCliente registrado con éxito:")
-print(f"Nombre: {cliente_nuevo.get_nombre()}")
-print(f"Dirección: {cliente_nuevo.get_direccion_entrega()}")
-print(f"Pago Preferido: {cliente_nuevo.get_metodo_pago()}")
+if __name__ == "__main__":
+    opciones_menu()
