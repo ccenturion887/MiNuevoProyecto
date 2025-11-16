@@ -1,4 +1,3 @@
-
 class Producto:
     # Constructor: Aplicando Encapsulamiento
     def __init__(self, nombre, precio, categoria):

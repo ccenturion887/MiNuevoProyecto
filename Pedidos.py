@@ -1,6 +1,7 @@
 from Cliente import Cliente
 from Restaurante import Restaurante
 from Producto import Producto
+
 class Pedidos:
     def __init__(self, cliente: Cliente, restaurante: Restaurante, productos_pedidos: list):
         # Aplicando Encapsulamiento
