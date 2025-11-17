@@ -37,6 +37,7 @@ def ejecutar_app():
     app = SistemaPedidos()
     opciones_menu(app)
 
+
 def añadir_catalogo():
     """Crea objetos Producto interactuando con el usuario y retorna la lista."""
     catalogo_productos = [] # La lista se inicia aca
@@ -60,6 +61,7 @@ def añadir_catalogo():
             catalogo_productos.append(nuevo_producto)
             print(f"   -> Producto '{prod_nombre}' añadido a la lista.")
             
+            
         except ValueError:
             print("Error: El precio debe ser un número.")
         return catalogo_productos
@@ -68,7 +70,7 @@ def alta_restaurante(sistema):
     nombre_comercial = input("Ingrese el nombre del restaurante: ")
     direccion_fisica = input("Introduce la direccion del local: ")
     catalogo = añadir_catalogo()
-
+    
     restaurante_nuevo = Restaurante (
         nombre_comercial,
         direccion_fisica,
@@ -196,6 +198,7 @@ def menu_cliente_logueado(sistema, cliente_encontrado):
         else:
             print("Error")
 
+
 def menu_restaurante_logeado(sistema, restaurante_logeado):
     while True:
         print("\n===============================")
@@ -218,7 +221,7 @@ def menu_restaurante_logeado(sistema, restaurante_logeado):
 
         elif opcion == '4':
             opciones_menu(sistema)
-            
+
         else:
             print("Opción invalida.")
 
