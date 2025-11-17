@@ -23,3 +23,21 @@ class Restaurante:
     def dar_alta_producto(self, producto):
         self._catalogo.append(producto)
 
+    def ver_menu_restaurante(self):
+
+        print(f"\n--- Menú de {self.get_nombre_comercial()} ---")
+    
+        if not self._catalogo:
+            print("El catálogo está vacío.")
+            return
+
+        # Iterar sobre la lista de objetos Producto
+        for i, producto in enumerate(self._catalogo):
+            # Usamos los Getters del objeto Producto para acceder a sus datos
+            nombre = producto.get_nombre()
+            precio = producto.get_precio()
+            categoria = producto.get_categoria()
+        
+            print(f"[{i + 1}] {nombre} ({categoria}) - ${precio:.2f}")
+    
+        print("---------------------------------------")

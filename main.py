@@ -3,6 +3,7 @@ from Cliente import Cliente
 from Restaurante import Restaurante
 from Producto import Producto
 from SistemaPedidos import SistemaPedidos
+from Pedidos import Pedidos
 
 def mostrar_menu():
     print("\n===============================")
@@ -61,8 +62,7 @@ def añadir_catalogo():
             
         except ValueError:
             print("Error: El precio debe ser un número.")
-            
-    return opciones_menu # Retorna la lista completa de objetos Producto
+        return catalogo_productos
     
 def alta_restaurante(sistema):
     nombre_comercial = input("Ingrese el nombre del restaurante: ")
@@ -78,7 +78,8 @@ def alta_restaurante(sistema):
     print("\nRestaurante registrado con éxito:")
     print(f"Nombre del restaurante: {restaurante_nuevo.get_nombre_comercial()}")
     print(f"Dirección del local: {restaurante_nuevo.get_direccion_fisica()}")
-    return menu_restaurante_logeado
+    restaurante_nuevo.ver_menu_restaurante()
+    return menu_restaurante_logeado(sistema, restaurante_nuevo)
 
 def login_restaurante(sistema):
     print("\n--- Inicio de Sesión de Restaurante ---")
@@ -156,7 +157,7 @@ def opciones_menu(sistema):
         if opcion == '1':
             menu_restaurantes(sistema)
 
-        if opcion == '2':
+        elif opcion == '2':
             menu_cliente(sistema)
     
         else:
@@ -212,8 +213,12 @@ def menu_restaurante_logeado(sistema, restaurante_logeado):
         elif opcion == '2':
             opciones_menu(sistema) # Es temporal, hasta que haga la programacion de pedidos y cliente
 
+        elif opcion == '3':
+            restaurante_logeado.ver_menu_restaurante()
+
         elif opcion == '4':
             opciones_menu(sistema)
+            
         else:
             print("Opción invalida.")
 
