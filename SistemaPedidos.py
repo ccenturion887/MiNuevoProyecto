@@ -4,13 +4,10 @@ from Pedidos import Pedidos
 
 class SistemaPedidos:
     
-    def __init__(self):
-        # Aplicando Encapsulamiento en los arrays de gestión
+    def __init__(self)
         self._clientes = []
         self._restaurantes = []
         self._pedidos = []
-
-    # --- Abstracción: Métodos de Almacenamiento ---
     
     def dar_alta_cliente(self, cliente: Cliente):
         self._clientes.append(cliente)
@@ -21,12 +18,9 @@ class SistemaPedidos:
     def dar_alta_pedido(self, pedido: Pedidos):
         self._pedidos.append(pedido)
 
-    # --- Abstracción: Métodos de Consulta (Cruciales para el login/pedido) ---
-
     def buscar_cliente_por_nombre(self, nombre_buscado: str):
         """Busca y retorna un objeto Cliente para la función login()."""
         for cliente in self._clientes:
-            # Usar el getter para acceder al nombre
             if cliente.get_nombre().lower() == nombre_buscado.lower():
                 return cliente
         return None
@@ -45,7 +39,6 @@ class SistemaPedidos:
             
         print("\n--- Restaurantes Disponibles ---")
         for i, restaurante in enumerate(self._restaurantes):
-            # Usamos el getter
             print(f"[{i+1}] {restaurante.get_nombre_comercial()} - Dirección: {restaurante.get_direccion_fisica()}")
             
         return self._restaurantes
