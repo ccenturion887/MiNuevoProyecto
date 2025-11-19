@@ -1,7 +1,8 @@
+from EntidadNombrable import EntidadNombrable
 class Cliente:
 
     def __init__(self, nombre, direccion_entrega, metodo_pago):
-        self._nombre = nombre
+        super().__init__(nombre)
         self._direccion_entrega = direccion_entrega
         self._metodo_pago = metodo_pago
 
