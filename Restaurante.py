@@ -1,8 +1,9 @@
+from EntidadNombrable import EntidadNombrable
 from Producto import Producto
 class Restaurante:
 
     def __init__(self, nombre_comercial, direccion_fisica, catalogo=None):
-        self._nombre_comercial = nombre_comercial
+        super().__init__(nombre_comercial)
         self._direccion_fisica = direccion_fisica
 
         if catalogo is None:
@@ -11,7 +12,7 @@ class Restaurante:
             self._catalogo = catalogo
         
     def get_nombre_comercial(self):
-        return self._nombre_comercial
+        return super().get_nombre()
 
     def get_direccion_fisica(self):
         return self._direccion_fisica
