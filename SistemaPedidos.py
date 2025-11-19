@@ -19,7 +19,6 @@ class SistemaPedidos:
         self._pedidos.append(pedido)
 
     def buscar_cliente_por_nombre(self, nombre_buscado: str):
-        """Busca y retorna un objeto Cliente para la función login()."""
         for cliente in self._clientes:
             if cliente.get_nombre().lower() == nombre_buscado.lower():
                 return cliente
@@ -32,7 +31,6 @@ class SistemaPedidos:
         return None
         
     def listar_restaurantes_disponibles(self):
-        """Muestra y retorna todos los restaurantes disponibles para que el cliente elija."""
         if not self._restaurantes:
             print("No hay restaurantes registrados en el sistema.")
             return []
@@ -44,6 +42,5 @@ class SistemaPedidos:
         return self._restaurantes
         
     def listar_pedidos_activos(self):
-        """Lista pedidos que no fueron entregados (Abstracción)."""
         activos = [p for p in self._pedidos if p.get_estado() != "entregado" and p.get_estado() != "cancelado"]
         return activos
